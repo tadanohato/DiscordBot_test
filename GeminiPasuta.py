@@ -57,13 +57,21 @@ async def on_message(message):
             allowed_mentions=discord.AllowedMentions.none(),
         )
         return
-    if content == "マンボ":
-        z = manbo.Z(.3 + .15j) #A suitable complex number.
-        z.calc(2,20) #loop end:abs(z) > 2 or count of calc 20
+    if "マンボ" in content:
+        spc = content.split()
+        c = complex(float(spc[1]),float(spc[2])) #spc["マンボ",real,imag,max]
+        z = manbo.Z(c) #淫
+
+        z.calc(2,int(spc[3])) #loop end:abs(z) > 2 or count of calc max
         for zn in z.set:
             await message.channel.send(str(zn))
         return
-    
+
+    if content == "contenttest":
+        await message.channel.send(content.split())
+        
+        return
+        
     if content == "それでは始めましょう✨":
         sys.exit()
         
