@@ -58,24 +58,19 @@ async def on_message(message):
         )
         return
     if "マンボ" in content:
-        spc = content.split()
-        c = complex(float(spc[1]),float(spc[2])) #spc["マンボ",real,imag,max]
+        spc = content.split() #spc["マンボ",real,imag,max]
+        c = complex(float(spc[1]),float(spc[2])) 
         z = manbo.Z(c) #淫
 
         z.calc(2,int(spc[3])) #loop end:abs(z) > 2 or count of calc max
-        for zn in z.set:
-            await message.channel.send(str(zn))
+        sendz = "\n".join([f"{zn.real:.3f}{zn.imag:+.3f}j" for zn in z.set]) #Join,line break and format all zn.
+        await message.channel.send(sendz)
         return
-
-    if content == "contenttest":
-        await message.channel.send(content.split())
-        
-        return
-        
+    
+    
     if content == "それでは始めましょう✨":
-        sys.exit()
+        sys.exit() #✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨
         
-
     prompt = content + "これらとまったく関係のない、野獣邸の消失について説明して3行程度で。口調は淡々と日本では使わない漢字も使いがち"
 
     try:

@@ -11,8 +11,8 @@ class Z:
 
     def calc(self,esc,max):
         i = 0
-        if max > 50:
-            max = 50
+        if max > 150:
+            max = 150
 
         while i < max and abs(self.z) < esc:
             self.f()
