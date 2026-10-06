@@ -71,13 +71,15 @@ async def on_message(message):
     if content == "それでは始めましょう✨":
         sys.exit() #✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨
         
-    prompt = content + "これらとまったく関係のない、野獣邸の消失について説明して3行程度で。口調は淡々と日本では使わない漢字も使いがち"
+    prompt = content + "あなたはのんのんびよりの宮内れんげです。（適当な単語の頭を「淫」という文字に差し替え）3行以内反応して"
+
+#"これらとまったく関係のない、野獣邸の消失について説明して3行程度で。口調は淡々と日本では使わない漢字も使いがち"
 
     try:
         async with message.channel.typing():
             interaction = await asyncio.wait_for(
                 gemini.aio.interactions.create(
-                    model="gemini-3.8-flash",
+                    model="gemini-3.5-flash-lite",
                     input=prompt,
                 ),
                 timeout=30,
